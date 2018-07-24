@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+
+        var storage = localStorage; //ローカルストレージの設定
+        var keyword = "word01";     //ローカルストレージのキー
+
+        //初期データ
+        var syokiData = [
+            { mondai :"プライバシーマーク制度で評価されるマネジメントシステムの管理の対象は個人情報である",ans :"1"},
+            {mondai :"業務分析を行うときに，DFDを用いて検討するのに適しているものは業務の流れの改善点である",ans :"1"},
+            {mondai :"2バイトで1文字を表すときの最大文字数は65365である。",ans :"2"},
+            {mondai :"インターネットを利用した新たなビジネスモデルを保護する法律は特許法である。。",ans :"2"},
+            {mondai :"PKIにおいて，電子証明書が正当性を証明しているものは共通鍵である。。",ans :"2"},
+        ]
+        //単語リスト
+        var　wordList = [];
+
+        //データの読み込み
+        function loadData(){
+            alert("データを読み込みます");
+            var strData = storage.getItem(keyword);
+
+            if (strData === null){
+                alert("データがありません。初期データをロードします");
+                wordList = syokiData;
+                strData = JSON.stringify(wordList);
+                storage.setItem(keyword,strData);
+            }else{
+
+                alert("データを読み込みます");
+                strData = storage.getItem(keyword);
+                wordList = JSON.parse(strData);
+            }
+
+            alert("データの件数は" + wordList.length + "件です");
+
+            document.getElementById("resultMessage1").innerHTML = "問題読込完了"
+            document.getElementById("resultMessage2").innerHTML = "問題数は" + wordList.length + "件です";
+        }
+        function resetData(){
+            storage.removeItem(keyword);
+            alert("ローカルストレージの内容を削除しました");
+            document.getElementById("resultMessage1").innerHTML =" ";
+            document.getElementById("resultMessage2").innerHTML =" ";
+        }
+
+
+
+
+    </script>
+</head>
+<body>
+    <section>
+        <div class ="mainmenu">
+            <button class="button" onclick="loadData()">問題読込</button><br>
+            <button class="button" onclick="resetData()">問題初期化</button><br>
+            <br>
+            <button class="menu2" onclick="location.href='index.html'">メニューに戻る</button>
+            
+        </section>
+        <p id ="resultMessage1"></p>
+        <p id ="resultMessage2"></p>
+    <script>
+    </script>        
+</body>
+</html>

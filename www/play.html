@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+    	// 問題番号
+    	var no = 0;
+    	// 正解数
+    	var score = 0;
+    	// 単語リスト
+    	var wordList = [];
+	  	var storage = localStorage;
+	  	var keyword = "word01";
+  
+      //HP管理
+      var beu = 100;
+
+       function initData(){
+            var strData = storage.getItem(keyword);
+            if(strData === null){
+            alert("問題がありません！問題読込して再実行してください");
+                location.href="index.html";
+            }else{
+                wordList = JSON.parse(strData);
+                alert("多部くんを一流俳優に導け！(全部で" + wordList.length +"問です)");
+
+
+            //問題をランダムにする
+            var num = wordList.length;
+
+            while (num) {
+              var i = Math.floor(Math.random() * num);
+              var strn = wordList[--num];
+              wordList[num] = wordList[i];
+              wordList[i] = strn;
+          }
+		    	showQuestion();
+	    	}
+    	}
+
+    	// 問題を表示する
+      function showQuestion() {
+    	  if(no<wordList.length){
+        document.getElementById("question").innerHTML = wordList[no].mondai;
+        document.getElementById("beuMe").innerHTML = "魅力="+beu;
+
+        }else{
+        //全問終了時、正解発表
+        document.getElementById("question").innerHTML = score + "/" + wordList.length;
+        document.getElementById("beutful").innerHTML = "あなたの魅力は"+beu+"です";
+        document.getElementById("answerForm").style.display = "none";
+        document.getElementById("gazou").style.display = "none";
+        document.getElementById("beuMe").style.display = "none";
+          if(beu >= 100+(wordList.length*50)){
+            document.getElementById("resultMessage").innerHTML = "おめでとう！スターになりました";
+            document.getElementById("resultImage").src = "suta.png";
+          }else if(beu >= ((wordList.length*50)+100) * 0.7){
+          document.getElementById("resultMessage").innerHTML = "惜しい！あなたの才能はあと少しで開花します！"
+          document.getElementById("resultImage").src = "imetore.png";
+          }else if(beu >= ((wordList.length*50)+100) * 0.5){
+          document.getElementById("resultMessage").innerHTML = "バックダンサー多部くん。"
+          document.getElementById("resultImage").src = "bokan.png";
+          }else{
+          document.getElementById("resultMessage").innerHTML = "まだまだ努力が必要です";
+          document.getElementById("resultImage").src = "otido.png";            
+          }
+        }
+      }
+
+    	
+    	// 入力された回答の正誤判定を行う
+        var answer = 0;
+        function tada(){
+            answer = 1;
+            document.getElementById("resMessage").innerHTML = "あなたの回答は〇です";
+        }
+        function batu(){
+            answer = 2;
+            document.getElementById("resMessage").innerHTML = "あなたの回答は✖です";
+            
+        }
+        //正誤発表
+      function judge() {
+         //ダメージ、回復抽選
+         var rand = Math.floor(Math.random()*5);
+         //被ダメージ量
+         if(answer == wordList[no].ans){
+         if(rand == 0){
+            document.getElementById("resultMessage").innerHTML ="正解です（何かのコツをつかんだ）";
+            document.getElementById("resImage").src = "hero.png";
+            score++;
+            beu = beu + 100;
+            }else if(rand == 1){
+            document.getElementById("resultMessage").innerHTML ="正解です（憧れの場所へ！）";
+            document.getElementById("resImage").src = "platinum.png";
+            score++;
+            beu = beu + 75;   
+            }else{
+               document.getElementById("resultMessage").innerHTML ="正解です";
+               document.getElementById("resImage").src = "kumasan2.png";
+               score++;
+               beu = beu + 50;   
+            }
+            answer = 0;
+         }else{
+            if(rand == 0){
+            document.getElementById("resultMessage").innerHTML ="不正解です(痛恨の一撃）";
+            document.getElementById("resImage").src = "damee.png";
+            beu = beu - 75
+           }else if(rand == 1){
+            document.getElementById("resultMessage").innerHTML ="不正解です（筋力UPでダメージダウン！）";
+            document.getElementById("resImage").src = "sokutei.png";
+            beu = beu - 30
+           }else{
+            document.getElementById("resultMessage").innerHTML ="不正解です";
+            document.getElementById("resImage").src = "kumasan.png";
+            beu = beu - 50 
+           }
+         }
+         if(beu < 1){
+            document.getElementById("resultMessage").innerHTML ="魅力が０になってしまった";
+            document.getElementById("resImage").src = "toboke.png";
+            document.getElementById("answerForm").style.display = "none";
+            document.getElementById("question").style.display = "none";
+            document.getElementById("beuMe").style.display = "none";
+         }
+         no++;
+         answer = 0;
+        
+        showQuestion();
+        document.getElementById("resMessage").innerHTML = "";
+    	}
+    </script>
+</head>
+   <body onload="initData()">
+	<h1 id="title">Question</h1>
+	<div id="question"></div>
+   <div id="beuMe"></div>
+   <div id="beutful"></div>
+   <div id="answerForm">
+        <button class="btn" id="answer" onclick="tada()">〇</button>
+        <button class="btn" id="answer" onclick="batu()">✖</button>
+        <br>
+        <button class="ansButton" onclick="judge()">回答を送信</button>
+   </div>
+   <div id ="resButton">
+   <button class="menu2" onclick="location.href='index.html'">メニューに戻る</button>
+   </div>
+   <p id="resultMessage"></p>
+   <img id="resultImage" src="">
+   <div id ="gazou">
+   <p id="miryoku"></p>
+   <p id="resMessage"></p>
+   <img id="resImage" src="">
+   </div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+body {
+    text-align: center;
+    background-color: #37d0ff
+}
+
+h1 {
+   font-size: 30px;
+    color: #2f00ff;
+    background-color: rgb(157, 166, 250);
+    background-size: 80px;
+}
+h2 {
+    color: rgb(0, 81, 255);
+    background-color: rgb(157, 166, 250);
+    font-size: 15px;
+}
+h3{
+   font-size: 25px;
+   color: rgb(0, 81, 255);
+   background-color: rgb(46, 246, 253);
+}
+h4{
+   text-align: left;
+   font-size: 15px;
+}
+h5{
+   text-align: right;
+   color: rgb(153, 0, 255);
+   font-size: 12px;
+}
+
+.button{
+    width: 180px;
+    height: 40px;
+    color: #00eeff;
+    background-color: rgb(76, 92, 236);
+    font-size: 20px;
+    border: 1px solid #225588;
+    border-radius: 8px;
+    padding: 6px 0;
+    margin: 5px;
+}
+.square_btn{
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 20px; 
+    padding: 7px 20px;
+    height: 50px;
+	border-radius: 25px;
+    text-decoration: none;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, rgb(0, 60, 255) 0%, #00f7ff 100%);
+    background-image: linear-gradient(45deg, rgb(0, 60, 255) 0%, #00f7ff 100%);
+    transition: .4s;
+}
+
+.square_btn:hover {
+    background-image: -webkit-linear-gradient(45deg, rgb(0, 60, 255) 0%, #00f7ff 100%);
+    background-image: linear-gradient(45deg, rgb(0, 60, 255) 0%, #00f7ff 100%);
+}
+.square_btn2{
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #FFF;
+    background-image: -webkit-linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+    background-image: linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+    transition: .4s;
+}
+
+.square_btn:hover{
+    background-image: -webkit-linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
+    background-image: linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
+}
+.menu2{
+    width: 100px;
+    /*height: 25px;*/
+    color: #ffffff;
+    background-color: rgb(1, 90, 255);
+    font-size: 12px;
+    border: 1px solid #8d03ff;
+    border-radius: 5px;
+    padding: 5px 0; 
+    padding-top: 5px 0;
+}
+/*index*/
+.gazou{
+   border-top-left-radius: 20px;  /* 左上だけの角丸半径 */
+   border-top-right-radius: 20px; /* 右上だけの角丸半径 */
+   max-width: 50%;
+   background-color: #05b8ff;
+   margin: auto;
+ }
+ #resImage{
+   max-width: 50%;
+   margin: 0 auto;
+}
+ /*play*/
+ #resultImage{
+   border-top-left-radius: 20px;  /* 左上だけの角丸半径 */
+   border-top-right-radius: 20px; /* 右上だけの角丸半径 */
+   max-width: 90%;
+   background-color: #eee8aa;
+   margin: auto;
+ }
+ .ansButton{
+   margin-left: 15px;
+   margin-right: 15px;
+   margin-top: 8px;
+   margin-bottom: 8px;
+   position: relative;
+   display: inline-block;
+   padding: 0.25em 0.5em;
+   text-decoration: none;
+   background: #00BCD4;/*背景色*/
+   color: rgb(32, 0, 212);/*=背景色*/
+   box-shadow: inset 0 2px 0 rgba(255,255,255,0.2);
+   border-bottom: solid 2px #118e9e;
+   border-radius: 4px;
+   font-weight: bold;
+   text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
+    }
+    
+    .ansButton:active {/*押したとき*/
+   border-bottom: solid 2px #00BCD4;
+   box-shadow: none;
+   text-shadow: -1px -1px rgba(255, 255, 255, 0.3), 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+   .btn{
+   display: inline-block;
+   text-decoration: none;
+   background: #87befd;
+   color: #FFF;
+   width: 80px;
+   height: 80px;
+   line-height: 80px;
+   border-radius: 50%;
+   text-align: center;
+   font-size: 30px;
+   vertical-align: middle;
+   overflow: hidden;
+   box-shadow: 0px 0px 0px 5px #87befd;
+   border: dashed 1px #FFF;
+   transition: .4s;
+   margin-left: 3px;
+   margin-right: 3px;
+}
+   .btn:hover{
+   background: #668ad8;
+   box-shadow: 0px 0px 0px 5px #668ad8;
+}
+.hidden_box {
+    margin: 2em 0;/*前後の余白*/
+    padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 10px;
+    height: 10px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor :pointer;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #efefef;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    margin-top: 5px;
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+.hidden_box {
+    margin: 2em 0;/*前後の余白*/
+    padding: 0;
+}
+
